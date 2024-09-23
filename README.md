@@ -15,6 +15,28 @@ Welcome to the Practical ASP.NET Subject. This is an elective subject and the ma
 5. Knowledge of manipulating databases using MSSQL
 6. Installed Visual Studio 2022
 
+## Expectations and goals
+ ### Students Expectations
+  - Learn and cover the process for implementing e2e solution
+  - Implement e-Shop application with authentication and role management
+  - Get knowledge and see the pros/cons of in implementing N-Tier architecture
+  - Extend the knowledge with some other usefull things like using mappers, logging, custom middlewares, custom exceptions, UI javascript libraries, etc...
+  - Extend your student portfolio with another MVC application
+### Trainers Excpetations
+  - Attendance and proactivity!
+  - Follow the materials and hands on coding at home!
+  - Provide feedback for the trainer's style of lecturing (too fast, to slow, descriptive/non descriptive examples...)
+  - Provide feedback if something else is needed from us in order for you to have better perception and gain more deep knowledge
+  - Use your cameras if possible
+
+## Course structure
+  - The Practical ASP.NET course consist of 10 modules
+  - From the very beginging we are starting to implement an e2e solution
+  - Every lecture start at 17:30, with tollerance of 5-10 mins, the meet will be started 10 mins earlier
+  - If you have questions from the previous lecture, use this 10 mins for asking the trainers
+  - The lecture will end 20:45 - 21:00 depends from the complexity of the material on that class
+  - Every lecture will have 2 breaks, 15 mins each (please be punctual and respcet the time)
+
 ## Useful tools
 
 - [Draw.io](https://draw.io) - Online Diagram Drawing Tool
