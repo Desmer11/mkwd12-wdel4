@@ -8,7 +8,9 @@ namespace Lamazon.DataAccess.EntitiesConfig
     {
         public void Configure(EntityTypeBuilder<OrderStatus> builder)
         {
-           
+            builder.HasKey(x => x.Id);
+            builder.Property(x => x.Id).ValueGeneratedNever();
+            builder.Property(x => x.Name).IsRequired().HasMaxLength(255);
         }
     }
 }

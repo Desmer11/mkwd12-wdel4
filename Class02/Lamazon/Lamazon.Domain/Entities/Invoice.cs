@@ -12,5 +12,12 @@
         public virtual User User { get; set; }
         public virtual Order Order { get; set; }
         public virtual InvoiceStatus InvoiceStatus { get; set; }
+
+        public virtual ICollection<InvoiceLineItem> InvoiceLineItems { get; set; }
+
+        public Invoice()
+        {
+            InvoiceLineItems = new HashSet<InvoiceLineItem>();
+        }
     }
 }

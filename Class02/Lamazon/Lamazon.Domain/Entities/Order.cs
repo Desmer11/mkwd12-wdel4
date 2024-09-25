@@ -11,11 +11,15 @@
         public string? CountryCode { get; set; }
         public string? CountryFlagUrl { get; set; }
 
+        public virtual User User { get; set; }
+        public virtual OrderStatus OrderStatus { get; set; }
         public virtual ICollection<Invoice> Invoices { get; set; }
+        public virtual ICollection<OrderLineItem> OrderLineItems { get; set; }
 
         public Order()
         {
             Invoices = new HashSet<Invoice>();
+            OrderLineItems = new HashSet<OrderLineItem>();
         }
     }
 }

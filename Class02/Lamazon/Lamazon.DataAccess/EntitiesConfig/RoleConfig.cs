@@ -8,7 +8,8 @@ namespace Lamazon.DataAccess.EntitiesConfig
     {
         public void Configure(EntityTypeBuilder<Role> builder)
         {
-           
+            builder.HasKey(x => x.Key);
+            builder.Property(x => x.Name).IsRequired().HasMaxLength(255);
         }
     }
 }

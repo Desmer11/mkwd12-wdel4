@@ -10,5 +10,16 @@
         public decimal Price { get; set; }
         public bool IsFeatured { get; set; }
         public int DiscountPercentage { get; set; }
+
+        public virtual ProductStatus ProductStatus { get; set; }
+        public virtual ProductCategory ProductCategory { get; set; }
+        public virtual ICollection<InvoiceLineItem> InvoiceLineItems { get; set; }
+        public virtual ICollection<OrderLineItem> OrderLineItems { get; set; }
+
+        public Product()
+        {
+            OrderLineItems = new HashSet<OrderLineItem>();
+            InvoiceLineItems = new HashSet<InvoiceLineItem>();
+        }
     }
 }

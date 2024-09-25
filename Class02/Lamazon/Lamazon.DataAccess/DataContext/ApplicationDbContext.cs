@@ -1,4 +1,5 @@
-﻿using Lamazon.Domain.Entities;
+﻿using Lamazon.DataAccess.Extensions;
+using Lamazon.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
@@ -8,12 +9,17 @@ namespace Lamazon.DataAccess.DataContext
     {
         public ApplicationDbContext(DbContextOptions options) : base(options)
         {
-            
+
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+            modelBuilder.SeedProducts()
+                        .SeedProductCategory()
+                        .SeedProductCategoryStatus()
+                        .SeedProductStatus();
         }
 
         public DbSet<Invoice> Invoices { get; set; }
