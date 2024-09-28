@@ -1,54 +1,42 @@
-﻿using Lamazon.DataAccess.Implementations;
+﻿using AutoMapper;
+using Lamazon.DataAccess.Implementations;
 using Lamazon.DataAccess.Interfaces;
 using Lamazon.Services.Interfaces;
 using Lamazon.ViewModels.Enums;
 using Lamazon.ViewModels.Models;
+using System.Collections.Generic;
 
 namespace Lamazon.Services.Implementations
 {
     public class ProductService : IProductService
     {
         private readonly IProductRepository _productRepository;
-        public ProductService(IProductRepository productRepository)
+        private readonly IMapper _mapper;
+
+        public ProductService(IProductRepository productRepository, IMapper mapper)
         {
             _productRepository = productRepository;
+            _mapper = mapper;
         }
 
         public List<ProductViewModel> GetAllProducts()
         {
-            throw new NotImplementedException();
+            var products = _productRepository.GetAll();
+            var mappedProducts = _mapper.Map<List<ProductViewModel>>(products);
+            return mappedProducts;
         }
 
         public List<ProductViewModel> GetAllFeaturedProducts()
         {
             var featuredProducts = _productRepository.GetAllFeaturedProducts();
-            var mappedProducts = featuredProducts.Select(x => new ProductViewModel
-            {
-                Id = x.Id,
-                Name = x.Name,
-                Description = x.Description,
-                DiscountPercentage = x.DiscountPercentage,
-                ImageUrl = x.ImageUrl,
-                Info = $"{x.Id.ToString("000")} - {x.Name} ({x.ProductCategory.Name})",
-                IsFeatured = x.IsFeatured,
-                IsAddedToCart = false,
-                Price = x.Price,
-                ProductCategory = new ProductCategoryViewModel
-                {
-                    Id = x.ProductCategory.Id,
-                    Name = x.ProductCategory.Name,
-                    ProductCategoryStatus = (ProductCategoryStatusEnum)x.ProductCategory.ProductCategoryStatus.Id
-                },
-                ProductCategoryId = x.ProductCategory.Id,
-                ProductStatus = (ProductStatusEnum)x.ProductStatus.Id
-            });
-
-            return mappedProducts.ToList();
+            var mappedProducts = _mapper.Map<List<ProductViewModel>>(featuredProducts);
+            return mappedProducts;
         }
 
         public ProductViewModel GetProductById(int id)
         {
-            throw new NotImplementedException();
+            var product = _productRepository.GetById(id);
+            return _mapper.Map<ProductViewModel>(product);
         }
     }
 }

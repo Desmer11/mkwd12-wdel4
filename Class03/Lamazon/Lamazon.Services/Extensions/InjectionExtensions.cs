@@ -24,5 +24,10 @@ namespace Lamazon.Services.Extensions
         {
             services.AddScoped<IProductService, ProductService>();
         }
+
+        public static void InjectAutoMapper(this IServiceCollection services)
+        {
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+        }
     }
 }

@@ -9,6 +9,7 @@ var connectionString = builder.Configuration.GetValue<string>("ConnectionStrings
 builder.Services.InjectDbContext(connectionString);
 builder.Services.InjectRepositories();
 builder.Services.InjectService();
+builder.Services.InjectAutoMapper();
 
 var app = builder.Build();
 
