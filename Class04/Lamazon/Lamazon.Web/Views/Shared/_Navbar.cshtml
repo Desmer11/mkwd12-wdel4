@@ -23,9 +23,27 @@
                         <i class="material-icons">shopping_cart</i>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a asp-controller="Users" asp-action="Login" class="nav-link text-dark">Login</a>
-                </li>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li class="nav-item dropdown">
+                        <a class="nav-link header-nav" href="javascript:;" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="text-transform:none !important">
+                            <i class="fas fa-user mr-1"></i>@User.DisplayName()
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            @if (User.IsAdmin())
+                            {
+                                <a class="dropdown-item">Lamazon CMS</a>
+                            }
+                            <a class="dropdown-item" asp-area="" asp-controller="Users" asp-action="Logout">Logout</a>
+                        </div>
+                    </li>
+                }
+                else
+                {
+                    <li class="nav-item">
+                        <a asp-controller="Users" asp-action="Login" class="nav-link text-dark">Login</a>
+                    </li>
+                }
             </ul>
         </div>
     </div>

@@ -1,4 +1,5 @@
 using Lamazon.Services.Extensions;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +11,21 @@ builder.Services.InjectDbContext(connectionString);
 builder.Services.InjectRepositories();
 builder.Services.InjectService();
 builder.Services.InjectAutoMapper();
+
+builder.Services
+    // Configures the app to use cookie authentication, where cookies will be used to identify the authenticated user.
+    .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    // Configures cookie-specific settings:
+    .AddCookie(options =>
+        {
+            // When a user tries to access a secured resource without being authenticated, they are redirected to the login page.
+            options.LoginPath = "/Users/Login";
+            options.ExpireTimeSpan = TimeSpan.FromHours(1);
+            // The cookie expiration time will reset if the user is active within the set expiration period, extending their session.
+            options.SlidingExpiration = true;
+        }
+    );
+builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
@@ -26,6 +42,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
