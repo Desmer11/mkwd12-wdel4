@@ -4,7 +4,7 @@ namespace Lamazon.DataAccess.Interfaces
 {
     public interface IOrderRepository
     {
-        Task<int> GetMaxId();
-        Task<int> Insert(Order order);
+        Task<int> GetMaxIdAsync();
+        Task<int> InsertAsync(Order order);
     }
 }

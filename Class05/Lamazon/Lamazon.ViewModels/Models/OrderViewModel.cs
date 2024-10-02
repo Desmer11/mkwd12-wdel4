@@ -1,4 +1,4 @@
-﻿using Lamazon.Domain.Enums;
+﻿using Lamazon.ViewModels.Enums;
 
 namespace Lamazon.ViewModels.Models
 {

@@ -1,4 +1,4 @@
-﻿namespace Lamazon.Domain.Enums
+﻿namespace Lamazon.ViewModels.Enums
 {
     public enum OrderStatusEnum
     {

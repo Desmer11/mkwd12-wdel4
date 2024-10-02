@@ -11,7 +11,7 @@ namespace Lamazon.DataAccess.Implementations
         {
         }
 
-        public async Task<int> GetMaxId()
+        public async Task<int> GetMaxIdAsync()
         {
             if (await _applicationDbContext.Orders.AnyAsync())
             {
@@ -20,7 +20,7 @@ namespace Lamazon.DataAccess.Implementations
             return 0;
         }
 
-        public async Task<int> Insert(Order order)
+        public async Task<int> InsertAsync(Order order)
         {
             await _applicationDbContext.Orders.AddAsync(order);
             await _applicationDbContext.SaveChangesAsync();

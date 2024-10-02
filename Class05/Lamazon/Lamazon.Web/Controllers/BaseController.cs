@@ -32,5 +32,10 @@ namespace Lamazon.Web.Controllers
 
             return shoppingCart;
         }
+
+        protected void AddNotificationMessage(string message)
+        {
+            TempData["NotificationMessage"] = message;
+        }
     }
 }
