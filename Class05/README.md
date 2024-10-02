@@ -5,7 +5,7 @@
 1. Implement Cart Logic
 2. Cart Counter logic
 3. Implement AddToCart and RemoveFromCart logic
-    * 2.1. Use jQuery for calling controller actions
+    * Used jQuery for calling controller actions
 4. Use ShoppingCart Cookie
 5. OrdersController and ShoppingCart view
 6. OrderService, Mapping profiles, OrdersRepository + Migration for seeding Order statuses
