@@ -17,6 +17,7 @@ namespace Lamazon.DataAccess.Implementations
         {
             return _applicationDbContext.Users.Count(x => x.RoleKey == Roles.User);
         }
+
         public List<User> GetAdministrators()
         {
             return _applicationDbContext.Users.Where(x => x.RoleKey == Roles.Admin).ToList();
@@ -45,6 +46,7 @@ namespace Lamazon.DataAccess.Implementations
         {
             return _applicationDbContext.Orders.Count(x => x.OrderStatusId == (int)OrderStatusEnum.Accepted);
         }
+
         public int CountPendingOrders()
         {
             return _applicationDbContext.Orders.Count(x => x.OrderStatusId == (int)OrderStatusEnum.Pending);
@@ -62,7 +64,6 @@ namespace Lamazon.DataAccess.Implementations
                 .Sum(x => x.TotalAmount);
         }
         #endregion
-
 
         //TODO: Implement invoice methods
         #region Invoice methods
