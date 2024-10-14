@@ -42,5 +42,12 @@
     <script src="~/js/admin-site.js" asp-append-version="true"></script>
 
     @RenderSection("Scripts", required: false)
+
+    <script>
+        @if (TempData["NotificationMessage"] != null)
+        {
+            @:$.notify('@TempData["NotificationMessage"]', { allow_dismiss: true, type: 'success' })
+        }
+    </script>
 </body>
 </html>

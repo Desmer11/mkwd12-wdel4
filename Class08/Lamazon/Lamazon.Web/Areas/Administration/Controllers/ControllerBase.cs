@@ -17,5 +17,10 @@ namespace Lamazon.Web.Areas.Administration.Controllers
 
             base.OnActionExecuting(context);
         }
+
+        protected void AddNotificationMessage(string message)
+        {
+            TempData["NotificationMessage"] = message;
+        }
     }
 }
