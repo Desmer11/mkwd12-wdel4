@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Lamazon.DataAccess.Implementations;
 using Lamazon.DataAccess.Interfaces;
-using Lamazon.Domain.Entities;
 using Lamazon.Services.Interfaces;
 using Lamazon.ViewModels.Enums;
 using Lamazon.ViewModels.Models;
@@ -38,39 +37,6 @@ namespace Lamazon.Services.Implementations
         {
             var product = _productRepository.GetById(id);
             return _mapper.Map<ProductViewModel>(product);
-        }
-
-        public PagedResultViewModel<ProductViewModel> GetFilteredProducts(ProductsDatatableRequestViewModel productsDatatableRequestViewModel)
-        {
-            var searchValue = productsDatatableRequestViewModel.search.value ?? string.Empty;
-            var productsPagedResult = _productRepository.GetFilteredProducts(productsDatatableRequestViewModel.CategoryId,
-                                                                             productsDatatableRequestViewModel.start,
-                                                                             productsDatatableRequestViewModel.length,
-                                                                             searchValue,
-                                                                             productsDatatableRequestViewModel.sortColumn,
-                                                                             productsDatatableRequestViewModel.isAscending);
-            return _mapper.Map<PagedResultViewModel<ProductViewModel>>(productsPagedResult);
-        }
-
-        public void CreateProduct(ProductViewModel productViewModel)
-        {
-            var product = _mapper.Map<Product>(productViewModel);
-            int productId = _productRepository.Insert(product);
-            if(productId <= 0)
-            {
-                throw new Exception($"Something went wrong while saving the new product");
-            }
-        }
-
-        public void UpdateProduct(ProductViewModel productViewModel)
-        {
-            var product = _mapper.Map<Product>(productViewModel);
-            _productRepository.Update(product);
-        }
-
-        public void DeleteProductById(int id)
-        {
-            _productRepository.DeleteById(id);
         }
     }
 }
