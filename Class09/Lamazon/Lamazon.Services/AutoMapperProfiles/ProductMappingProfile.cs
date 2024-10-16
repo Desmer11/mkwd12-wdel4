@@ -12,7 +12,7 @@ namespace Lamazon.Services.AutoMapperProfiles
             CreateMap<Product, ProductViewModel>()
                 .ForMember(x => x.ProductStatus, opt => opt.Ignore())
                 .ForMember(x => x.Info, opt => opt.MapFrom(s => $"{s.Id.ToString("000")} - {s.Name} ({s.ProductCategory.Name})"))
-                .ForMember(x => x.ProductStatus, opt => opt.MapFrom(s => s.ProductCategoryId))
+                .ForMember(x => x.ProductStatus, opt => opt.MapFrom(s => s.ProductStatusId))
                 .ReverseMap()
                 .ForMember(x => x.ProductStatus, opt => opt.Ignore())
                 .ForMember(x => x.ProductStatusId, opt => opt.MapFrom(x => x.ProductStatus));
