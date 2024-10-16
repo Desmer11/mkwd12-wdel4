@@ -37,6 +37,61 @@ namespace Lamazon.Web.Areas.Administration.Controllers
         }
 
 
+        public IActionResult Create()
+        {
+            var productViewModel = new ProductViewModel();
+            SetMetadata(productViewModel);
+            return View(productViewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(ProductViewModel productViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                _productService.CreateProduct(productViewModel);
+                return RedirectToAction(nameof(Index));
+            }
+            else
+            {
+                SetMetadata(productViewModel);
+                return View(productViewModel);
+            }
+        }
+
+
+        public IActionResult Edit(int? id)
+        {
+            if (id.HasValue)
+            {
+                var productViewModel = _productService.GetProductById(id.Value);
+                SetMetadata(productViewModel);
+                return View(productViewModel);
+            }
+            else
+            {
+                return new EmptyResult();
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(ProductViewModel productViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                _productService.UpdateProduct(productViewModel);
+                return RedirectToAction(nameof(Index));
+            }
+            else
+            {
+                SetMetadata(productViewModel);
+                return View(productViewModel);
+            }
+        }
+
+
         private void SetMetadata(ProductViewModel productViewModel = null)
         {
             var productCategories = _productCategoriesService.GetAllProductCategories();
