@@ -74,5 +74,11 @@ namespace Lamazon.DataAccess.Implementations
             _applicationDbContext.SaveChanges();
         }
 
+        public List<ProductCategory> GetAll()
+        {
+            return _applicationDbContext.ProductCategories
+            .Where(x => x.ProductCategoryStatusId != (int)ProductCategoryStatusEnum.Deleted)
+            .ToList();
+        }
     }
 }

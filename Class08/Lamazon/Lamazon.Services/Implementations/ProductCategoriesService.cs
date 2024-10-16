@@ -58,5 +58,10 @@ namespace Lamazon.Services.Implementations
             _productCategoriesRepository.DeleteById(id);
         }
 
+        public List<ProductCategoryViewModel> GetAllProductCategories()
+        {
+            var productCategories = _productCategoriesRepository.GetAll();
+            return _mapper.Map<List<ProductCategoryViewModel>>(productCategories);
+        }
     }
 }
