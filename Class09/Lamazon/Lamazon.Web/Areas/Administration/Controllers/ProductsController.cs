@@ -36,7 +36,6 @@ namespace Lamazon.Web.Areas.Administration.Controllers
             return Json(pagedResult.ToTableData());
         }
 
-
         public IActionResult Create()
         {
             var productViewModel = new ProductViewModel();
@@ -59,7 +58,6 @@ namespace Lamazon.Web.Areas.Administration.Controllers
                 return View(productViewModel);
             }
         }
-
 
         public IActionResult Edit(int? id)
         {
@@ -91,12 +89,40 @@ namespace Lamazon.Web.Areas.Administration.Controllers
             }
         }
 
+        public IActionResult Delete(int? id)
+        {
+            if (id.HasValue)
+            {
+                var productViewModel = _productService.GetProductById(id.Value);
+                SetMetadata(productViewModel);
+                return View(productViewModel);
+            }
+            else
+            {
+                return new EmptyResult();
+            }
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteConfirmed(int? id)
+        {
+            if (id.HasValue)
+            {
+                _productService.DeleteProductById(id.Value);
+                return RedirectToAction(nameof(Index));
+            }
+            else
+            {
+                return new EmptyResult();
+            }
+        }
+
 
         private void SetMetadata(ProductViewModel productViewModel = null)
         {
             var productCategories = _productCategoriesService.GetAllProductCategories();
             ViewBag.ProductCategoryList = new SelectList(productCategories, "Id", "Name", productViewModel?.ProductCategoryId);
         }
-
     }
 }
