@@ -21,6 +21,6 @@ Implement Edit functionality for the users. Note that only the Role should be ed
 
 Use the implementation of the other tabs as guidance
 
-## Feel free to contact us with if you have any blockers ❕
+## Feel free to contact us if you have any blockers ❕
 
 ### Happy coding 🌞
