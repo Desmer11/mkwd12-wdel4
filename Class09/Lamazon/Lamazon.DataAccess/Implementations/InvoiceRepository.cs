@@ -84,6 +84,9 @@ namespace Lamazon.DataAccess.Implementations
                 "InvoiceStatus" => isAscending
                         ? invoicesQuery.OrderBy(x => x.InvoiceStatus)
                         : invoicesQuery.OrderByDescending(x => x.InvoiceStatus),
+                "TotalAmount" => isAscending
+                ? invoicesQuery.OrderBy(x => x.TotalAmount)
+                : invoicesQuery.OrderByDescending(x => x.TotalAmount),
                 _ => throw new NotImplementedException(),
             };
 

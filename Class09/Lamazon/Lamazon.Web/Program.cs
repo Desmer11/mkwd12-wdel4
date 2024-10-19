@@ -14,6 +14,7 @@ builder.Services.InjectDbContext(connectionString);
 builder.Services.InjectRepositories();
 builder.Services.InjectService();
 builder.Services.InjectAutoMapper();
+builder.Services.InjectFluentValidators();
 builder.Services.AddHttpClient<IGeoTrackerService, GeoTrackerService>();
 
 builder.Services
